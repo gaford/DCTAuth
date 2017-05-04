@@ -27,24 +27,25 @@
 						   userInfo:@{NSLocalizedDescriptionKey : description}];
 }
 
-+ (void)parseCredentialsFromResponse:(DCTAuthResponse *)response completion:(void (^)(NSError *error, NSString *code, NSString *accessToken, NSString *refreshToken, DCTOAuth2CredentialType type))completion {
++ (void)parseCredentialsFromResponse:(DCTAuthResponse *)response completion:(void (^)(NSError *error, NSString *code, NSString *accessToken, NSString *idToken, NSString *refreshToken, DCTOAuth2CredentialType type))completion {
 
 	NSDictionary *dictionary = response.contentObject;
 
 	if (![dictionary isKindOfClass:[NSDictionary class]]) {
 		NSError *error = [NSError errorWithDomain:@"DCTAuth" code:0 userInfo:@{NSLocalizedDescriptionKey : @"Response not dictionary."}];
-		completion(error, nil, nil, nil, DCTOAuth2CredentialTypeParamter);
+		completion(error, nil, nil, nil, nil, DCTOAuth2CredentialTypeParamter);
 		return;
 	}
 
 	NSError *error = [DCTOAuth2 errorWithStatusCode:response.statusCode dictionary:dictionary];
 	if (error) {
-		completion(error, nil, nil, nil, DCTOAuth2CredentialTypeParamter);
+		completion(error, nil, nil, nil, nil, DCTOAuth2CredentialTypeParamter);
 		return;
 	}
 
 	NSString *code = dictionary[DCTOAuth2Keys.code];
 	NSString *accessToken = dictionary[DCTOAuth2Keys.accessToken];
+	NSString *idToken = dictionary[DCTOAuth2Keys.idToken];
 	NSString *refreshToken = dictionary[DCTOAuth2Keys.refreshToken];
 
 	DCTOAuth2CredentialType type = DCTOAuth2CredentialTypeParamter;
@@ -54,7 +55,7 @@
 		type = DCTOAuth2CredentialTypeBearer;
 	}
 
-	completion(nil, code, accessToken, refreshToken, type);
+	completion(nil, code, accessToken, idToken, refreshToken, type);
 }
 
 @end

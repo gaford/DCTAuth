@@ -13,6 +13,6 @@
 @interface DCTOAuth2 : NSObject
 
 + (NSError *)errorWithStatusCode:(NSInteger)statusCode dictionary:(NSDictionary *)dictionary;
-+ (void)parseCredentialsFromResponse:(DCTAuthResponse *)response completion:(void (^)(NSError *error, NSString *code, NSString *accessToken, NSString *refreshToken, DCTOAuth2CredentialType type))completion;
++ (void)parseCredentialsFromResponse:(DCTAuthResponse *)response completion:(void (^)(NSError *error, NSString *code, NSString *accessToken, NSString *idToken, NSString *refreshToken, DCTOAuth2CredentialType type))completion;
 
 @end

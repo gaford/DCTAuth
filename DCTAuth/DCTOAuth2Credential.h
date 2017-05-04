@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, DCTOAuth2CredentialType) {
  *  @param clientSecret The client secret.
  *  @param password The password.
  *  @param accessToken The access token.
+ *  @param idToken The ID token
  *  @param refreshToken The refresh token.
  *  @param type The credential type.
  *
@@ -31,6 +32,7 @@ typedef NS_ENUM(NSInteger, DCTOAuth2CredentialType) {
 					clientSecret:(NSString *)clientSecret
 						password:(NSString *)password
 					 accessToken:(NSString *)accessToken
+                         idToken:(NSString *)idToken
 					refreshToken:(NSString *)refreshToken
 							type:(DCTOAuth2CredentialType)type;
 
@@ -45,6 +47,9 @@ typedef NS_ENUM(NSInteger, DCTOAuth2CredentialType) {
 
 /** The access token. */
 @property (nonatomic, readonly) NSString *accessToken;
+
+/** The ID token. */
+@property (nonatomic, readonly) NSString *idToken;
 
 /** The refresh token. */
 @property (nonatomic, readonly) NSString *refreshToken;

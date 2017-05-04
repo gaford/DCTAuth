@@ -21,6 +21,7 @@ const struct DCTOAuth2Keys DCTOAuth2Keys = {
 	.grantType = @"grant_type",
 	.code = @"code",
 	.accessToken = @"access_token",
+	.idToken = @"id_token",
 	.tokenType = @"token_type",
 	.expiresIn = @"expires_in",
 	.username = @"username",

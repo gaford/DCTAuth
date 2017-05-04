@@ -311,13 +311,14 @@ static const struct DCTOAuth2AccountProperties DCTOAuth2AccountProperties = {
 
 		[responses addObject:response];
 
-		[DCTOAuth2 parseCredentialsFromResponse:response completion:^(NSError *error, NSString *code, NSString *accessToken, NSString *refreshToken, DCTOAuth2CredentialType type) {
+		[DCTOAuth2 parseCredentialsFromResponse:response completion:^(NSError *error, NSString *code, NSString *accessToken, NSString *idToken, NSString *refreshToken, DCTOAuth2CredentialType type) {
 
 			if (!error)
 				self.credential = [[DCTOAuth2Credential alloc] initWithClientID:clientID
 																   clientSecret:clientSecret
 																	   password:password
 																	accessToken:accessToken
+																		idToken:idToken
 																   refreshToken:refreshToken
 																		   type:type];
 
@@ -327,7 +328,7 @@ static const struct DCTOAuth2AccountProperties DCTOAuth2AccountProperties = {
 
 	void (^authorizeHandler)(DCTAuthResponse *) = ^(DCTAuthResponse *response) {
 
-		[DCTOAuth2 parseCredentialsFromResponse:response completion:^(NSError *error, NSString *code, NSString *accessToken, NSString *refreshToken, DCTOAuth2CredentialType type) {
+		[DCTOAuth2 parseCredentialsFromResponse:response completion:^(NSError *error, NSString *code, NSString *accessToken, NSString *idToken, NSString *refreshToken, DCTOAuth2CredentialType type) {
 
 			// If there's no access token URL, skip it.
 			// This is the "Implicit Authentication Flow"
@@ -375,13 +376,14 @@ static const struct DCTOAuth2AccountProperties DCTOAuth2AccountProperties = {
 
 	[self refreshAccessTokenWithRefreshToken:refreshToken clientID:clientID clientSecret:clientSecret handler:^(DCTAuthResponse *response, NSError *error) {
 
-		[DCTOAuth2 parseCredentialsFromResponse:response completion:^(NSError *error, NSString *code, NSString *accessToken, NSString *refreshToken, DCTOAuth2CredentialType type) {
+		[DCTOAuth2 parseCredentialsFromResponse:response completion:^(NSError *error, NSString *code, NSString *accessToken, NSString *idToken, NSString *refreshToken, DCTOAuth2CredentialType type) {
 
 			if (!error)
 				self.credential = [[DCTOAuth2Credential alloc] initWithClientID:clientID
 																   clientSecret:clientSecret
 																	   password:password
 																	accessToken:accessToken
+																		idToken:idToken
 																   refreshToken:refreshToken
 																		   type:type];
 

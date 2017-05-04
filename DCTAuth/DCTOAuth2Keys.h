@@ -21,6 +21,7 @@ extern const struct DCTOAuth2Keys {
 	__unsafe_unretained NSString *grantType;
 	__unsafe_unretained NSString *code;
 	__unsafe_unretained NSString *accessToken;
+	__unsafe_unretained NSString *idToken;
 	__unsafe_unretained NSString *tokenType;
 	__unsafe_unretained NSString *expiresIn;
 	__unsafe_unretained NSString *username;

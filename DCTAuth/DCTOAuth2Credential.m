@@ -15,6 +15,7 @@ static const struct DCTOAuth2CredentialProperties {
 	__unsafe_unretained NSString *clientSecret;
 	__unsafe_unretained NSString *password;
 	__unsafe_unretained NSString *accessToken;
+	__unsafe_unretained NSString *idToken;
 	__unsafe_unretained NSString *refreshToken;
 	__unsafe_unretained NSString *type;
 } DCTOAuth2CredentialProperties;
@@ -24,6 +25,7 @@ static const struct DCTOAuth2CredentialProperties DCTOAuth2CredentialProperties 
 	.clientSecret = @"clientSecret",
 	.password = @"password",
 	.accessToken = @"accessToken",
+	.idToken = @"idToken",
 	.refreshToken = @"refreshToken",
 	.type = @"type"
 };
@@ -36,6 +38,7 @@ static const struct DCTOAuth2CredentialProperties DCTOAuth2CredentialProperties 
 					clientSecret:(NSString *)clientSecret
 						password:(NSString *)password
 					 accessToken:(NSString *)accessToken
+						 idToken:(NSString *)idToken
 					refreshToken:(NSString *)refreshToken
 							type:(DCTOAuth2CredentialType)type {
 
@@ -50,6 +53,7 @@ static const struct DCTOAuth2CredentialProperties DCTOAuth2CredentialProperties 
 	_clientSecret = [clientSecret copy];
 	_password = [password copy];
 	_accessToken = [accessToken copy];
+	_idToken = [idToken copy];
 	_refreshToken = [refreshToken copy];
 	_type = type;
 	return self;
@@ -77,6 +81,7 @@ static const struct DCTOAuth2CredentialProperties DCTOAuth2CredentialProperties 
 	_clientSecret = [coder decodeObjectOfClass:[NSString class] forKey:DCTOAuth2CredentialProperties.clientSecret];
 	_password = [coder decodeObjectOfClass:[NSString class] forKey:DCTOAuth2CredentialProperties.password];
 	_accessToken = [coder decodeObjectOfClass:[NSString class] forKey:DCTOAuth2CredentialProperties.accessToken];
+	_idToken = [coder decodeObjectOfClass:[NSString class] forKey:DCTOAuth2CredentialProperties.idToken];
 	_refreshToken = [coder decodeObjectOfClass:[NSString class] forKey:DCTOAuth2CredentialProperties.refreshToken];
 	_type = [coder decodeIntegerForKey:DCTOAuth2CredentialProperties.type];
 	return self;
@@ -87,6 +92,7 @@ static const struct DCTOAuth2CredentialProperties DCTOAuth2CredentialProperties 
 	[coder encodeObject:self.clientSecret forKey:DCTOAuth2CredentialProperties.clientSecret];
 	[coder encodeObject:self.password forKey:DCTOAuth2CredentialProperties.password];
 	[coder encodeObject:self.accessToken forKey:DCTOAuth2CredentialProperties.accessToken];
+	[coder encodeObject:self.idToken forKey:DCTOAuth2CredentialProperties.idToken];
 	[coder encodeObject:self.refreshToken forKey:DCTOAuth2CredentialProperties.refreshToken];
 	[coder encodeInteger:self.type forKey:DCTOAuth2CredentialProperties.type];
 }
@@ -94,12 +100,13 @@ static const struct DCTOAuth2CredentialProperties DCTOAuth2CredentialProperties 
 #pragma mark - NSObject
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"<%@: %p; %@ = %@; %@ = %@; %@ = %@; %@ = %@>",
+	return [NSString stringWithFormat:@"<%@: %p; %@ = %@; %@ = %@; %@ = %@; %@ = %@; %@ = %@>",
 			NSStringFromClass([self class]),
 			(void *)self,
 			DCTOAuth2CredentialProperties.clientID, self.clientID,
 			DCTOAuth2CredentialProperties.clientSecret, self.clientSecret,
 			DCTOAuth2CredentialProperties.accessToken, self.accessToken,
+			DCTOAuth2CredentialProperties.idToken, self.idToken,
 			DCTOAuth2CredentialProperties.refreshToken, self.refreshToken];
 }
 
